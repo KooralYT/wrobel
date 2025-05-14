@@ -1,11 +1,9 @@
 <?php
-// Konfiguracja bazy danych Supabase (PostgreSQL)
-// Te dane powinny pochodzić z panelu projektu Supabase
-define('DB_HOST', 'db.skdyyunvyuwajyvmmysc.supabase.co');  // Zmień na właściwy host Supabase
-define('DB_NAME', 'postgres');  // W Supabase domyślna nazwa bazy to postgres
-define('DB_USER', 'postgres');  // W Supabase użytkownik to zwykle postgres
-define('DB_PASS', 'Pawroon0602');  // Zmień na hasło z panelu Supabase
-define('DB_PORT', '5432');  // Standardowy port PostgreSQL
+// Konfiguracja bazy danych PostgreSQL
+define('DB_HOST', 'db.skdyyunvyuwajyvmmysc.supabase.co');
+define('DB_NAME', 'postgres');
+define('DB_USER', 'postgres'); // domyślny użytkownik PostgreSQL
+define('DB_PASS', 'Pawroon0602'); // twoje hasło
 
 // Maksymalna liczba prób dla pytań
 define('MAX_ATTEMPTS_OPEN', 3);
@@ -16,21 +14,12 @@ session_start();
 
 // Połączenie z bazą danych
 try {
-    $dsn = sprintf(
-        "pgsql:host=%s;port=%s;dbname=%s;user=%s;password=%s",
-        DB_HOST,
-        DB_PORT,
-        DB_NAME,
-        DB_USER,
-        DB_PASS
-    );
-    $db = new PDO($dsn);
+    // Połączenie z PostgreSQL zamiast MySQL
+    $dsn = "pgsql:host=".DB_HOST.";dbname=".DB_NAME;
+    $db = new PDO($dsn, DB_USER, DB_PASS);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    // Ustawienie schematu (w Supabase najczęściej używasz schematu "public")
-    $db->exec("SET search_path TO public");
 } catch (PDOException $e) {
-    die('Błąd połączenia z bazą danych Supabase: ' . $e->getMessage());
+    die('Błąd połączenia z bazą danych: ' . $e->getMessage());
 }
 
 // Funkcje pomocnicze
