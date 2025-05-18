@@ -49,9 +49,9 @@ function render_dashboard() {
         
         <nav>
             <ul>
-                <li><a href="index.php?page=dashboard" class="active">Dashboard</a></li>
+                <li><a href="index.php?page=dashboard" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
                 <?php if ($_SESSION['role'] === 'admin'): ?>
-                <li><a href="index.php?page=admin">Panel Administratora</a></li>
+                <li><a href="index.php?page=admin"><i class="fas fa-cogs"></i> Panel Administratora</a></li>
                 <?php endif; ?>
             </ul>
         </nav>
@@ -81,9 +81,14 @@ function render_dashboard() {
                             <?php foreach ($category_lessons as $lesson): ?>
                             <div class="lesson-card">
                                 <h4><?= htmlspecialchars($lesson['title']) ?></h4>
+                                <p><?= htmlspecialchars(substr($lesson['content'], 0, 100)) ?>...</p>
                                 <div class="lesson-actions">
-                                    <a href="index.php?page=lesson&id=<?= $lesson['id'] ?>" class="btn btn-primary">Ucz się</a>
-                                    <a href="index.php?page=test&id=<?= $lesson['id'] ?>" class="btn btn-secondary">Test</a>
+                                    <a href="index.php?page=lesson&id=<?= $lesson['id'] ?>" class="btn">
+                                        <i class="fas fa-book-open"></i> Czytaj lekcję
+                                    </a>
+                                    <a href="index.php?page=test&id=<?= $lesson['id'] ?>" class="btn btn-primary">
+                                        <i class="fas fa-tasks"></i> Rozwiąż test
+                                    </a>
                                 </div>
                             </div>
                             <?php endforeach; ?>

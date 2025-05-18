@@ -39,7 +39,7 @@ function render_admin_panel() {
         <header>
             <h1>Kurs SQL - Panel Administratora</h1>
             <div class="user-info">
-                <span>Witaj, <?= htmlspecialchars($_SESSION['email']) ?> (Administrator)</span>
+                <span>Witaj, <?= htmlspecialchars($_SESSION['nickname']) ?> (Administrator)</span>
                 <a href="index.php?action=logout" class="btn btn-sm">Wyloguj</a>
             </div>
         </header>
@@ -88,7 +88,9 @@ function render_admin_panel() {
                                     <td><?= htmlspecialchars($user['role']) ?></td>
                                     <td><?= date('d.m.Y H:i', strtotime($user['created_at'])) ?></td>
                                     <td>
-                                        <a href="index.php?page=admin_user_details&id=<?= $user['id'] ?>" class="btn btn-sm">Szczegóły</a>
+                                        <a href="index.php?page=admin_user_details&id=<?= $user['id'] ?>" class="btn btn-sm">
+                                            <i class="fas fa-eye"></i> Szczegóły
+                                        </a>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
@@ -126,7 +128,9 @@ function render_admin_panel() {
                                     <td><?= $test['attempts'] ?></td>
                                     <td><?= date('d.m.Y H:i', strtotime($test['created_at'])) ?></td>
                                     <td>
-                                        <a href="index.php?page=admin_test_details&id=<?= $test['id'] ?>" class="btn btn-sm">Szczegóły</a>
+                                        <a href="index.php?page=admin_test_details&id=<?= $test['id'] ?>" class="btn btn-sm">
+                                            <i class="fas fa-file-alt"></i> Szczegóły
+                                        </a>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
@@ -162,8 +166,12 @@ function render_admin_panel() {
                                     <td><?= htmlspecialchars($lesson['title']) ?></td>
                                     <td><?= htmlspecialchars($lesson['category']) ?></td>
                                     <td>
-                                        <a href="index.php?page=admin_edit_lesson&id=<?= $lesson['id'] ?>" class="btn btn-sm">Edytuj</a>
-                                        <a href="index.php?page=admin_manage_questions&lesson_id=<?= $lesson['id'] ?>" class="btn btn-sm">Pytania</a>
+                                        <a href="index.php?page=admin_edit_lesson&id=<?= $lesson['id'] ?>" class="btn btn-sm">
+                                            <i class="fas fa-edit"></i> Edytuj
+                                        </a>
+                                        <a href="index.php?page=admin_manage_questions&lesson_id=<?= $lesson['id'] ?>" class="btn btn-sm">
+                                            <i class="fas fa-question-circle"></i> Pytania
+                                        </a>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
@@ -546,7 +554,9 @@ function render_user_details($user_id) {
                                     <td><?= $test['attempts'] ?></td>
                                     <td><?= date('d.m.Y H:i', strtotime($test['created_at'])) ?></td>
                                     <td>
-                                        <a href="index.php?page=admin_test_details&id=<?= $test['id'] ?>" class="btn btn-sm">Szczegóły</a>
+                                        <a href="index.php?page=admin_test_details&id=<?= $test['id'] ?>" class="btn btn-sm">
+                                            <i class="fas fa-file-alt"></i> Szczegóły
+                                        </a>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
@@ -556,7 +566,7 @@ function render_user_details($user_id) {
                     </div>
                     
                     <div class="form-actions">
-                        <a href="index.php?page=admin" class="btn">Powrót</a>
+                        <a href="index.php?page=admin" class="btn"><i class="fas fa-arrow-left"></i> Powrót</a>
                     </div>
                 </div>
             </div>
@@ -888,8 +898,10 @@ function render_test_details($test_id) {
                     </div>
                     
                     <div class="form-actions">
-                        <a href="index.php?page=admin" class="btn">Powrót</a>
-                        <a href="index.php?page=admin_user_details&id=<?= $test['user_id'] ?>" class="btn btn-secondary">Profil użytkownika</a>
+                        <a href="index.php?page=admin" class="btn"><i class="fas fa-arrow-left"></i> Powrót</a>
+                        <a href="index.php?page=admin_user_details&id=<?= $test['user_id'] ?>" class="btn btn-secondary">
+                            <i class="fas fa-user"></i> Profil użytkownika
+                        </a>
                     </div>
                 </div>
             </div>
@@ -943,7 +955,7 @@ function render_add_lesson() {
         <header>
             <h1>Kurs SQL - Panel Administratora</h1>
             <div class="user-info">
-                <span>Witaj, <?= htmlspecialchars($_SESSION['email']) ?> (Administrator)</span>
+                <span>Witaj, <?= htmlspecialchars($_SESSION['nickname']) ?> (Administrator)</span>
                 <a href="index.php?action=logout" class="btn btn-sm">Wyloguj</a>
             </div>
         </header>
@@ -981,11 +993,11 @@ function render_add_lesson() {
                         <div class="form-group">
                             <label for="category">Kategoria:</label>
                             <select name="category" id="category" required>
-                                <option value="">Wybierz kategorię</option>
+                                <option value="">-- Wybierz kategorię --</option>
                                 <option value="Podstawy">Podstawy</option>
-                                <option value="DQL">DQL</option>
-                                <option value="DML">DML</option>
-                                <option value="DDL">DDL</option>
+                                <option value="DQL">DQL (Data Query Language)</option>
+                                <option value="DML">DML (Data Manipulation Language)</option>
+                                <option value="DDL">DDL (Data Definition Language)</option>
                                 <option value="Zaawansowane">Zaawansowane</option>
                             </select>
                         </div>
@@ -996,8 +1008,8 @@ function render_add_lesson() {
                         </div>
                         
                         <div class="form-actions">
-                            <a href="index.php?page=admin" class="btn">Anuluj</a>
-                            <button type="submit" class="btn btn-primary">Zapisz lekcję</button>
+                            <a href="index.php?page=admin" class="btn"><i class="fas fa-arrow-left"></i> Anuluj</a>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Zapisz lekcję</button>
                         </div>
                     </form>
                 </div>
@@ -1066,7 +1078,7 @@ function render_edit_lesson($lesson_id) {
         <header>
             <h1>Kurs SQL - Panel Administratora</h1>
             <div class="user-info">
-                <span>Witaj, <?= htmlspecialchars($_SESSION['email']) ?> (Administrator)</span>
+                <span>Witaj, <?= htmlspecialchars($_SESSION['nickname']) ?> (Administrator)</span>
                 <a href="index.php?action=logout" class="btn btn-sm">Wyloguj</a>
             </div>
         </header>
@@ -1104,11 +1116,11 @@ function render_edit_lesson($lesson_id) {
                         <div class="form-group">
                             <label for="category">Kategoria:</label>
                             <select name="category" id="category" required>
-                                <option value="">Wybierz kategorię</option>
+                                <option value="">-- Wybierz kategorię --</option>
                                 <option value="Podstawy" <?= $lesson['category'] === 'Podstawy' ? 'selected' : '' ?>>Podstawy</option>
-                                <option value="DQL" <?= $lesson['category'] === 'DQL' ? 'selected' : '' ?>>DQL</option>
-                                <option value="DML" <?= $lesson['category'] === 'DML' ? 'selected' : '' ?>>DML</option>
-                                <option value="DDL" <?= $lesson['category'] === 'DDL' ? 'selected' : '' ?>>DDL</option>
+                                <option value="DQL" <?= $lesson['category'] === 'DQL' ? 'selected' : '' ?>>DQL (Data Query Language)</option>
+                                <option value="DML" <?= $lesson['category'] === 'DML' ? 'selected' : '' ?>>DML (Data Manipulation Language)</option>
+                                <option value="DDL" <?= $lesson['category'] === 'DDL' ? 'selected' : '' ?>>DDL (Data Definition Language)</option>
                                 <option value="Zaawansowane" <?= $lesson['category'] === 'Zaawansowane' ? 'selected' : '' ?>>Zaawansowane</option>
                             </select>
                         </div>
@@ -1119,8 +1131,8 @@ function render_edit_lesson($lesson_id) {
                         </div>
                         
                         <div class="form-actions">
-                            <a href="index.php?page=admin" class="btn">Anuluj</a>
-                            <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+                            <a href="index.php?page=admin" class="btn"><i class="fas fa-arrow-left"></i> Anuluj</a>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Zapisz zmiany</button>
                         </div>
                     </form>
                 </div>
@@ -1372,7 +1384,7 @@ function render_manage_questions($lesson_id) {
         <header>
             <h1>Kurs SQL - Panel Administratora</h1>
             <div class="user-info">
-                <span>Witaj, <?= htmlspecialchars($_SESSION['email']) ?> (Administrator)</span>
+                <span>Witaj, <?= htmlspecialchars($_SESSION['nickname']) ?> (Administrator)</span>
                 <a href="index.php?action=logout" class="btn btn-sm">Wyloguj</a>
             </div>
         </header>
@@ -1388,7 +1400,8 @@ function render_manage_questions($lesson_id) {
             <div class="admin-panel">
                 <div class="breadcrumb">
                     <a href="index.php?page=admin">Panel Administratora</a> &gt; 
-                    Pytania do lekcji: <?= htmlspecialchars($lesson['title']) ?>
+                    <a href="index.php?page=admin_edit_lesson&id=<?= $lesson_id ?>">Edytuj lekcję</a> &gt;
+                    Zarządzanie pytaniami
                 </div>
                 
                 <?php if ($message): ?>
@@ -1551,8 +1564,8 @@ function render_manage_questions($lesson_id) {
                 </div>
                 
                 <div class="form-actions">
-                    <button type="button" class="btn close-modal-btn">Anuluj</button>
-                    <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+                    <button type="button" class="btn close-modal-btn"><i class="fas fa-times"></i> Anuluj</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Zapisz zmiany</button>
                 </div>
             </form>
         </div>

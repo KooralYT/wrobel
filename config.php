@@ -1,8 +1,8 @@
 <?php
 // Konfiguracja bazy danych PostgreSQL
-define('DB_HOST', 'aws-0-eu-central-1.pooler.supabase.com');
+define('DB_HOST', 'db.skdyyunvyuwajyvmmysc.supabase.co');
 define('DB_NAME', 'postgres');
-define('DB_USER', 'postgres.skdyyunvyuwajyvmmysc'); // domyślny użytkownik PostgreSQL
+define('DB_USER', 'postgres'); // domyślny użytkownik PostgreSQL
 define('DB_PASS', 'Pawroon0602'); // twoje hasło
 
 // Maksymalna liczba prób dla pytań

@@ -123,18 +123,20 @@ function render_login_page() {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Kurs SQL - logowanie do interaktywnej platformy do nauki języka SQL">
+        <link rel="shortcut icon" href="fav.ico" type="image/x-icon">
         <title>Kurs SQL - Logowanie</title>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <div class="container">
             <header>
-                <h1>Kurs SQL</h1>
+                <h1><i class="fas fa-database"></i> Kurs SQL</h1>
             </header>
             
             <div class="auth-container">
                 <div class="auth-box">
-                    <h2>Logowanie</h2>
+                    <h2><i class="fas fa-sign-in-alt"></i> Logowanie</h2>
                     <?php if (isset($login_error)): ?>
                         <div class="alert alert-error"><?= $login_error ?></div>
                     <?php endif; ?>
@@ -144,12 +146,12 @@ function render_login_page() {
                         <input type="hidden" name="csrf_token" value="<?= generate_csrf_token() ?>">
                         
                         <div class="form-group">
-                            <label for="login">Nickname lub Email:</label>
+                            <label for="login"><i class="fas fa-user"></i> Nickname lub Email:</label>
                             <input type="text" name="login" id="login" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="password">Hasło:</label>
+                            <label for="password"><i class="fas fa-lock"></i> Hasło:</label>
                             <input type="password" name="password" id="password" required>
                         </div>
                         
@@ -174,18 +176,20 @@ function render_register_page() {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Kurs SQL - rejestracja na interaktywnej platformie do nauki języka SQL">
+        <link rel="shortcut icon" href="fav.ico" type="image/x-icon">
         <title>Kurs SQL - Rejestracja</title>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <div class="container">
             <header>
-                <h1>Kurs SQL</h1>
+                <h1><i class="fas fa-database"></i> Kurs SQL</h1>
             </header>
             
             <div class="auth-container">
                 <div class="auth-box">
-                    <h2>Rejestracja</h2>
+                    <h2><i class="fas fa-user-plus"></i> Rejestracja</h2>
                     <?php if (!empty($errors)): ?>
                         <div class="alert alert-error">
                             <ul>
@@ -201,24 +205,24 @@ function render_register_page() {
                         <input type="hidden" name="csrf_token" value="<?= generate_csrf_token() ?>">
                         
                         <div class="form-group">
-                            <label for="nickname">Nickname:</label>
+                            <label for="nickname"><i class="fas fa-user-tag"></i> Nickname:</label>
                             <input type="text" name="nickname" id="nickname" required>
                             <small>Min. 3 znaki, tylko litery, cyfry i podkreślenia</small>
                         </div>
                         
                         <div class="form-group">
-                            <label for="email">Email:</label>
+                            <label for="email"><i class="fas fa-envelope"></i> Email:</label>
                             <input type="email" name="email" id="email" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="password">Hasło:</label>
+                            <label for="password"><i class="fas fa-lock"></i> Hasło:</label>
                             <input type="password" name="password" id="password" required>
                             <small>Min. 6 znaków</small>
                         </div>
                         
                         <div class="form-group">
-                            <label for="password_confirm">Powtórz hasło:</label>
+                            <label for="password_confirm"><i class="fas fa-lock"></i> Powtórz hasło:</label>
                             <input type="password" name="password_confirm" id="password_confirm" required>
                         </div>
                         

@@ -13,6 +13,24 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
     
+    // Dodajemy globalny nagłówek z meta tagami i favicon
+    if (!in_array($page, ['login', 'register'])) {
+        echo '<!DOCTYPE html>
+        <html lang="pl">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="description" content="Kurs SQL - interaktywna platforma do nauki języka SQL">
+            <meta name="keywords" content="SQL, kurs, nauka programowania, bazy danych">
+            <meta name="author" content="Kurs SQL">
+            <link rel="shortcut icon" href="fav.ico" type="image/x-icon">
+            <title>Kurs SQL - Interaktywna nauka</title>
+        </head>
+        <body>
+        <!-- Treść będzie renderowana przez plik obsługujący daną stronę -->
+        ';
+    }
+
     switch ($page) {
         // Strony autoryzacji
         case 'login':
@@ -131,6 +149,12 @@ if (isset($_GET['page'])) {
                 redirect('login');
             }
             break;
+    }
+
+    // Zamykamy globalny tag body i html 
+    if (!in_array($page, ['login', 'register'])) {
+        echo '</body>
+        </html>';
     }
 } else {
     // Domyślnie przekieruj na dashboard (dla zalogowanych) lub login
